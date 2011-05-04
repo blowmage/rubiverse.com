@@ -1,0 +1,7 @@
+<article class="podcast">
+  <h2><a href="{{ page.url | replace:'.html','' }}">Episode {{ page.episode }}: {{ page.title }}</a></h2>
+  <section id="summary">
+    <p>{{ page.summary }} Recorded on {{ page.recorded | date_to_string }} and published on {{ page.published | date_to_string }}.
+	<a href="{{ page.url | replace:'.html','' }}#disqus_thread">Comments</a></p>
+  </section>
+</article>

@@ -1,0 +1,15 @@
+---
+title:      All your Ruby are belong to us
+layout:     default
+---
+{% for page in site.episodes limit:3 %}
+  {% if forloop.first %}
+    {% include podcast_full.html %}
+  {% else %}
+    {% include podcast_short.html %}
+  {% endif %}
+{% endfor %}
+
+<p><a href="/podcasts/">Would you like some more?</a></p>
+
+{% include disqus_comment_count.html %}

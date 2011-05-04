@@ -1,0 +1,64 @@
+---
+layout:     nil
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:media="http://search.yahoo.com/mrss" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Rubiverse Podcast</title>
+    <link>http://rubiverse.com/</link>
+    <description>Discussion of all things Ruby-related.</description>
+    <updated>{{ site.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>Mike Moore</name>
+      <email>mike@rubiverse.com</email>
+    </author>
+    <image>
+      <link>http://rubiverse.com/</link>
+      <url>http://rubiverse.com/images/thumbnail.png</url>
+      <title>Rubiverse Podcast</title>
+    </image>
+    <language>en-us</language>
+    <copyright>http://creativecommons.org/licenses/by-nc-nd/3.0/us/</copyright>
+
+    <media:credit role="author">Mike Moore</media:credit>
+    <media:thumbnail url="http://rubiverse.com/images/thumbnail.png" />
+    <media:keywords>ruby,rails,agile,enterprise,code,design,fun</media:keywords>
+    <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Developers</media:category>
+    <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Computers</media:category>
+    <media:copyright>http://creativecommons.org/licenses/by-nc-nd/3.0/us/</media:copyright>
+
+    <itunes:owner>
+      <itunes:email>mike@rubiverse.com</itunes:email>
+      <itunes:name>Mike Moore</itunes:name>
+    </itunes:owner>
+    <itunes:author>Mike Moore</itunes:author>
+    <itunes:image href="http://rubiverse.com/images/thumbnail.png" />
+    <itunes:keywords>ruby,rails,agile,enterprise,code,design,fun</itunes:keywords>
+    <itunes:subtitle>All your Ruby are belong to us.</itunes:subtitle>
+    <itunes:summary>Discussion of all things Ruby-related.</itunes:summary>
+    <itunes:category text="Technology"><itunes:category text="Developers" /></itunes:category>
+    <itunes:category text="Technology"><itunes:category text="Computers" /></itunes:category>
+
+	{% for podcast in site.episodes %}
+    <item>
+      <author>Mike Moore - mike@rubiverse.com</author>
+      <title>{{ podcast.title }}</title>
+      <link>http://rubiverse.com{{ podcast.url | replace:'.html','' }}</link>
+      <description>
+<![CDATA[
+{{ podcast.content }}
+]]>
+      </description>
+      <guid>http://rubiverse.com{{ podcast.url | replace:'.html','' }}</guid>
+      <pubDate>{{ podcast.published | date_to_xmlschema }}</pubDate>
+      <enclosure url="{{ podcast.mp3_url }}" length="{{ podcast.mp3_size }}" type="audio/mpeg" />
+      <media:content url="{{ podcast.mp3_url }}" fileSize="{{ podcast.mp3_size }}" type="audio/mpeg" />
+      <itunes:author>Mike Moore</itunes:author>
+      <itunes:subtitle>Rubiverse Podcast Episode {{ podcast.episode }}</itunes:subtitle>
+      <itunes:summary>{{ podcast.summary }} Recorded on {{ podcast.recorded | date_to_string }} and published on {{ podcast.published | date_to_string }}.</itunes:summary>
+      <itunes:keywords>{{ podcast.tags | join: ',' }}</itunes:keywords>
+    </item>
+	{% endfor %}
+
+  </channel>
+</rss>

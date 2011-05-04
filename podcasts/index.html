@@ -1,0 +1,9 @@
+---
+title:      Episode Archive
+layout:     default
+---
+{% for page in site.episodes %}
+  {% include podcast_short.html %}
+{% endfor %}
+
+{% include disqus_comment_count.html %}

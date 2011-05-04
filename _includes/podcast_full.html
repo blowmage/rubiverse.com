@@ -1,0 +1,26 @@
+<article class="podcast">
+  <h1><a href="{{ page.url | replace:'.html','' }}">Episode {{ page.episode }}: {{ page.title }}</a></h1>
+  <section id="audio">
+    <div class="player">
+      <audio src="{{ page.mp3_url }}" controls preload="none">
+        <object type="application/x-shockwave-flash" data="/flash/player.swf" height="24" width="290">
+          <param name="movie" value="/flash/player.swf">
+          <param name="FlashVars" value="soundFile={{ page.mp3_url }}">
+          <param name="quality" value="high">
+          <param name="menu" value="false">
+          <param name="wmode" value="transparent">
+        </object>
+      </audio>
+    </div>
+    <div class="download">
+      <a href="{{ page.mp3_url }}">Download ({{ page.mp3_length | mp3_length }} {{ page.mp3_size | mp3_size }}, MP3)</a>
+    </div>
+  </section>
+  <section id="content">
+    {{ page.content }}
+  </section>
+  <section id="published">
+    <p>Recorded on {{ page.recorded | date_to_string }} and published on {{ page.published | date_to_string }}.
+	<a href="{{ page.url | replace:'.html','' }}#disqus_thread">Comments</a></p>
+  </section>
+</article>
