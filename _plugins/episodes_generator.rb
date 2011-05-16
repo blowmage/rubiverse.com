@@ -9,7 +9,7 @@ module Jekyll
     def generate(site)
       site.instance_eval do
         def episodes
-          @episodes = self.pages.select { |p| p.data['episode'] }.sort_by { |p| 0 - p.data['episode'] }
+          @episodes = self.pages.select { |p| p.data['podcast'] }.sort_by { |p| 0 - p.data['podcast']['episode'] }
         end
         alias :old_site_payload :site_payload
         def site_payload
@@ -19,7 +19,7 @@ module Jekyll
         end
       end
       site.episodes.each do |e|
-        e.data['published'] = Time.parse e.data['published'].to_s
+        e.data['podcast']['published'] = Time.parse e.data['podcast']['published'].to_s
       end
     end
 

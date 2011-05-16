@@ -7,7 +7,7 @@ layout:     nil
     <title>Rubiverse Podcast</title>
     <link>http://rubiverse.com/</link>
     <description>Discussion of all things Ruby-related.</description>
-    <updated>{{ site.date | date_to_xmlschema }}</updated>
+    <updated>{{ site.time | date_to_xmlschema }}</updated>
     <author>
       <name>Mike Moore</name>
       <email>mike@rubiverse.com</email>
@@ -39,24 +39,24 @@ layout:     nil
     <itunes:category text="Technology"><itunes:category text="Developers" /></itunes:category>
     <itunes:category text="Technology"><itunes:category text="Computers" /></itunes:category>
 
-	{% for podcast in site.episodes %}
+	{% for episode in site.episodes %}
     <item>
       <author>Mike Moore - mike@rubiverse.com</author>
-      <title>{{ podcast.title }}</title>
-      <link>http://rubiverse.com{{ podcast.url | replace:'.html','' }}</link>
+      <title>{{ episode.title }}</title>
+      <link>http://rubiverse.com{{ episode.url | replace:'.html','' }}</link>
       <description>
 <![CDATA[
-{{ podcast.content }}
+{{ episode.content }}
 ]]>
       </description>
-      <guid>http://rubiverse.com{{ podcast.url | replace:'.html','' }}</guid>
-      <pubDate>{{ podcast.published | date_to_xmlschema }}</pubDate>
-      <enclosure url="{{ podcast.mp3_url }}" length="{{ podcast.mp3_size }}" type="audio/mpeg" />
-      <media:content url="{{ podcast.mp3_url }}" fileSize="{{ podcast.mp3_size }}" type="audio/mpeg" />
+      <guid>http://rubiverse.com{{ episode.url | replace:'.html','' }}</guid>
+      <pubDate>{{ episode.podcast.published | date_to_xmlschema }}</pubDate>
+      <enclosure url="{{ episode.podcast.url }}" length="{{ episode.podcast.filesize }}" type="audio/mpeg" />
+      <media:content url="{{ episode.podcast.url }}" fileSize="{{ episode.podcast.filesize }}" type="audio/mpeg" />
       <itunes:author>Mike Moore</itunes:author>
-      <itunes:subtitle>Rubiverse Podcast Episode {{ podcast.episode }}</itunes:subtitle>
-      <itunes:summary>{{ podcast.summary }} Recorded on {{ podcast.recorded | date_to_string }} and published on {{ podcast.published | date_to_string }}.</itunes:summary>
-      <itunes:keywords>{{ podcast.tags | join: ',' }}</itunes:keywords>
+      <itunes:subtitle>Rubiverse Podcast Episode {{ episode.podcast.episode }}</itunes:subtitle>
+      <itunes:summary>{{ episode.summary }} Recorded on {{ episode.podcast.recorded | date_to_string }} and published on {{ episode.podcast.published | date_to_string }}.</itunes:summary>
+      <itunes:keywords>{{ episode.tags | join: ',' }}</itunes:keywords>
     </item>
 	{% endfor %}
 
